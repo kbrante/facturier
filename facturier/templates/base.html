@@ -45,9 +45,14 @@
                                 <li><a href="{% url 'account_signup' %}">{% trans "Register"%}</a></li>
                                 <li><a href="{% url 'account_login' %}">{% trans "login"%}</a></li>
                                 {% endif %}
-                                <li><input id="funky" placeholder="{% trans 'Search'%}"/></li>
+
 
                             </ul>
+                            <form class="navbar-form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                </div>
+                            </form>
                         </div><!-- /.navbar-collapse -->
                     </div><!-- /.container-fluid -->
                 </nav>
