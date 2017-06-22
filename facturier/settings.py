@@ -154,20 +154,17 @@ BOWER_INSTALLED_APPS = (
 
    'fontawesome',
 
-   'tagsinput',
-
 )
 
 SASS_PROCESSOR_INCLUDE_DIRS = [
 
-   os.path.join(BASE_DIR, 'static', 'external', 'bootstrap-sass', 'assets', 'stylesheets'),
+   os.path.join(BASE_DIR, 'static', 'bower_components', 'bootstrap-sass', 'assets', 'stylesheets'),
 
 ]
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, "static")
 
 AUTHENTICATION_BACKENDS = (
-
 
    'django.contrib.auth.backends.ModelBackend',
    'allauth.account.auth_backends.AuthenticationBackend'
