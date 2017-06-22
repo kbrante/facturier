@@ -20,6 +20,12 @@ class Profile(TranslatableModel):
 class Status(models.Model):
     status = models.CharField(max_length=100)
 
+    def __unicode__(self):
+        return self.status
+        
+    class Meta:
+        verbose_name_plural=_("statuses")
+
 class Proposal(models.Model):
     dealer = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
