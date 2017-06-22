@@ -5816,5 +5816,7 @@ button.close {
 
 body {
   background-color: #8daee2; }
+  body #id_avatar {
+    margin: 0 auto; }
 
 /*# sourceMappingURL=../../../../../../../../static/sass/style.css.map */
