@@ -19,12 +19,14 @@ class UserAdmin(BaseUserAdmin):
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
-class ServiceInline(admin.TabularInline):
-    model = Service
-    verbose_name = "Services"
+class LigneInline(admin.TabularInline):
+    model = Ligne
+    verbose_name = "Ligne"
     can_delete = True
-class ProposalAdmin(admin.ModelAdmin):
-    inlines = (ServiceInline,)
+    
+class PropositionAdmin(admin.ModelAdmin):
+    inlines = (LigneInline,)
+
 admin.site.register(Profile)
 admin.site.register(Status)
-admin.site.register(Proposal,ProposalAdmin)
+admin.site.register(Proposition,PropositionAdmin)
