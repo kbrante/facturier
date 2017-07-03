@@ -4,4 +4,5 @@ media/
 *.sqlite3
 *.map
 *.jpg
+*.jpeg
 static/bower_components
