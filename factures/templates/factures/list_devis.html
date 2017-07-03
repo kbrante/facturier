@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{%block title%}
+Liste devis
+{%endblock title%}
+
+{%block content%}
+<ul>
+    {% for devi in devis %}
+        <li>{{devi.dealer}} {{devi.status}} {{devi.customer}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
