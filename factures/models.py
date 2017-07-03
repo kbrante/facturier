@@ -42,10 +42,10 @@ class Proposition(models.Model):
     dealer = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     customer = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    proposition = models.ForeignKey('Ligne', on_delete=models.CASCADE)
+    proposition = models.CharField(max_length=150, blank=True, null=True)
 
     def __unicode__(self):
-        return self.proposition.service_name
+        return self.proposition+" "+str(self.id)
 
 
 
@@ -54,3 +54,6 @@ class Ligne(models.Model):
     unit_price = models.DecimalField(max_digits=8, decimal_places=2)
     quantity = models.SmallIntegerField()
     proposal = models.ForeignKey(Proposition, on_delete=models.CASCADE)
+
+    def __unicode__(self):
+        return self.service_name

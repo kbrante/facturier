@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{%block title%}
+Liste devis
+{%endblock title%}
+
+{%block content%}
+<ul>
+    {% for devi in devis %}
+        <div class="col-md-3">
+            <li><a href="">{{devi.proposition}}  </a></li>
+            <li><label>Vendeur :</label> {{devi.dealer}}</li>
+            <li><label>Status :</label>{{devi.status}}</li>
+            <li><label>Client</label>{{devi.customer}}</li>
+        </div>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
