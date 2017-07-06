@@ -49,8 +49,14 @@ class DevisCreateView(CreateView):
 class DevisDetailView(DetailView):
     model = Proposition
     pk_field = "id"
-    context_object_name = "ligne"
+    context_object_name = "propositions"
     template_name = "factures/devis_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = DetailView.get_context_data(self)
+        context["detail_lignes"] = Ligne.objects.filter(proposal = self.object)
+        print kwargs
+
 
 # class ClientDetailView(DetailView):
 #     model = Client
