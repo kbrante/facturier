@@ -5,4 +5,6 @@ media/
 *.map
 *.jpg
 *.jpeg
+*.css
+*.css.map
 static/bower_components
