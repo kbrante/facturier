@@ -32,8 +32,8 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             {% if request.user.is_authenticated %}
-                            <li class="active"><a href="{% url 'devis-list' request.user.username %}">Archives</a></li>
-                            <li><a href="">Créer un devis</a></li>
+                            <li class=""><a href="{% url 'devis-list' request.user.username %}">Archives</a></li>
+                            <li><a href="{% url 'devis-create' request.user.username %}">Créer un devis</a></li>
                             {% endif %}
 
                         </ul>
