@@ -21,12 +21,12 @@ class Profile(TranslatableModel):
         return self.user.username
 
 class Client(models.Model):
-    clientname = models.CharField(max_length=50, null=True, blank=True, verbose_name=_("nom client"))
-    clientaddress = models.CharField(max_length=100,null=True, blank=True, verbose_name=_("adresse client"))
-    clientzipcode = models.CharField(max_length=5,null=True, blank=True, verbose_name=_("code postal client"))
+    name = models.CharField(max_length=50, null=True, blank=True, verbose_name=_("nom client"))
+    address = models.CharField(max_length=100,null=True, blank=True, verbose_name=_("adresse client"))
+    zipcode = models.CharField(max_length=5,null=True, blank=True, verbose_name=_("code postal client"))
 
     def __unicode__(self):
-        return self.clientname
+        return self.name
 
 
 class Status(models.Model):
