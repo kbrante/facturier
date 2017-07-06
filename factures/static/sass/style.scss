@@ -1,8 +1,11 @@
 @import "bootstrap";
 
 body {
-    background-color: #8daee2;
-    #id_avatar {
-        margin: 0 auto;
+    background-color: #4c9622;
+    .col-md-3{
+        li a {
+            font-size: 40px;
+        }
+
     }
 }
