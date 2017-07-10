@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
@@ -35,6 +35,8 @@ class Proposition(models.Model):
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     customer = models.ForeignKey(Profile, on_delete=models.CASCADE)
     proposition = models.CharField(max_length=150, blank=True, null=True)
+    date_creation = models.DateTimeField(blank=True, null=True)
+    date_update = models.DateTimeField(blank=True, null=True)
 
     def amount(self):
         result = 0
