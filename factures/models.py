@@ -20,14 +20,6 @@ class Profile(TranslatableModel):
     def __unicode__(self):
         return self.user.username
 
-class Client(models.Model):
-    name = models.CharField(max_length=50, null=True, blank=True, verbose_name=_("nom client"))
-    address = models.CharField(max_length=100,null=True, blank=True, verbose_name=_("adresse client"))
-    zipcode = models.CharField(max_length=5,null=True, blank=True, verbose_name=_("code postal client"))
-
-    def __unicode__(self):
-        return self.name
-
 
 class Status(models.Model):
     status = models.CharField(max_length=100)
@@ -44,6 +36,12 @@ class Proposition(models.Model):
     customer = models.ForeignKey(Profile, on_delete=models.CASCADE)
     proposition = models.CharField(max_length=150, blank=True, null=True)
 
+    def amount(self):
+        result = 0
+        for service in self.ligne_set.all():
+                result += service.unit_price * service.quantity
+        return result
+
     def __unicode__(self):
         return self.proposition+" "+str(self.id)
 
@@ -54,6 +52,7 @@ class Ligne(models.Model):
     unit_price = models.DecimalField(max_digits=8, decimal_places=2)
     quantity = models.SmallIntegerField()
     proposal = models.ForeignKey(Proposition, on_delete=models.CASCADE)
+
 
     def __unicode__(self):
         return self.service_name

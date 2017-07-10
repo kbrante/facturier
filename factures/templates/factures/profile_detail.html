@@ -17,7 +17,7 @@ Detail {{ object.user.username }}
     <li><label>{% trans "Ville" %} : </label> {{object.city}}</li>
 </ul>
 
-{% if request.user.is_authenticated %}
+{% if request.user.is_authenticated and request.user == object.user %}
     <a href="{% url 'profile-update' request.user.username %}">{% trans "Editer" %}</a>
 {% endif %}
 

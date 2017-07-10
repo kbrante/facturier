@@ -1,12 +1,22 @@
 {% extends "base.html" %}
 
 {%block title%}
-{{ligne.service_name}}
+{{propositions.proposition}}
 {%endblock title%}
 
 {%block content%}
 <ul>
-    plop
+    <li><label>nom : </label> {{propositions.proposition}}</li>
+    <li><label>vendeur : </label> {{propositions.dealer}}</li>
+    <li><label>status : </label> {{propositions.status}}</li>
+    <li><label>client : </label> {{propositions.customer}}</li>
+    {% for detail_ligne in detail_lignes %}
+        <li>{{detail_ligne}}</li>
+        <li>{{detail_ligne.quantity}}</li>
+    {% endfor %}
+    <li>{{ propositions.amount }} €</li>
 </ul>
+<a href="{% url 'update-status' propositions.id %}">Valider</a>
+<a href="{% url 'archived-status' propositions.id %}">Archiver</a>
 
 {% endblock content %}

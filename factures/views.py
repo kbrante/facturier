@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, redirect
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
@@ -44,7 +44,7 @@ class DevisCreateView(CreateView):
         return context
 
     def get_success_url(self):
-        return reverse('devis-list', kwargs={})
+        return reverse('devis-list', kwargs={'slug': self.request.user.username})
 
 class DevisDetailView(DetailView):
     model = Proposition
@@ -55,11 +55,31 @@ class DevisDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = DetailView.get_context_data(self)
         context["detail_lignes"] = Ligne.objects.filter(proposal = self.object)
-        print kwargs
+        return context
 
+def UpdateStatus(request, pk):
+    proposition = Proposition.objects.get(id=pk)
+    pending = Status.objects.get(id=5)
+    waiting = Status.objects.get(id=2)
+    paid = Status.objects.get(id=3)
+    if proposition.status == pending:
+        proposition.status = waiting
+    elif proposition.status == waiting:
+        proposition.status = paid
 
-# class ClientDetailView(DetailView):
-#     model = Client
-#     context_object_name = "customers"
-#     pk_field = "id"
-#     template_name = "factures/client_detail.html"
+    proposition.save()
+    return redirect('devis-detail',slug = request.user.username, pk=pk)
+
+def ArchiveDevis(request, pk):
+    proposition = Proposition.objects.get(id=pk)
+    pending = Status.objects.get(id=5)
+    aborted = Status.objects.get(id=4)
+    archived = Status.objects.get(id=1)
+
+    if proposition.status == pending:
+        proposition.status = aborted
+    elif proposition.status == aborted:
+        proposition.status = archived
+
+    proposition.save()
+    return redirect('devis-detail', slug= request.user.username, pk=pk)
