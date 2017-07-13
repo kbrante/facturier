@@ -45,7 +45,7 @@ class Proposition(models.Model):
         return result
 
     def __unicode__(self):
-        return self.proposition+" "+str(self.id)
+        return self.proposition
 
 
 
