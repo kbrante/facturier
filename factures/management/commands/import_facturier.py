@@ -12,6 +12,8 @@ class Command(BaseCommand):
             csvreader.next()
             projet = None
             date_up = None
+            projet_created = None
+
             for row in csvreader:
                 id, customer, status, creation_date, update_date, product, price, qty = row
                 print id,\
@@ -33,9 +35,10 @@ class Command(BaseCommand):
                     statut = Status.objects.get(id=3)
                 if update_date != '':
                     date_up = pytz.utc.localize(datetime.strptime(update_date, '%d/%m/%y %H:%M'))
+
                 if id != projet :
 
-                    proposition = Proposition.objects.create(
+                    proposition, projet_created = Proposition.objects.get_or_create(
                         dealer = User.objects.get(id=2),
                         customer = Profile.objects.get(id=3),
                         status = statut,
@@ -44,7 +47,7 @@ class Command(BaseCommand):
                         date_update = date_up
                     )
 
-                Ligne.objects.create(
+                Ligne.objects.get_or_create(
                     service_name = product,
                     unit_price = price,
                     quantity = qty,
